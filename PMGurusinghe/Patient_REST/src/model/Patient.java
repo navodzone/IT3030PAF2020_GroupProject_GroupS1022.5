@@ -74,5 +74,77 @@ public String insertPatient(String FName, String LName, String NIC,String DOB,St
 		return output;
 
 	}
+public String readPatient()  
+{   
+	String output = ""; 
+
+	try   
+	{    
+	Connection con = connect(); 
+	if (con == null)   
+	{return "Error while connecting to the database for reading."; } 
+	 
+	   // Prepare the html table to be displayed    
+	output = "<table border=\"1\"><tr><th>First Name</th><th>Last Name</th><th>NIC</th><th>DOB</th><th>Email</th><th>Mobile</th><th>Address</th><th>Blood Group</th><th>Allergy</th><th>Gender</th><th>password</th><th>Update</th><th>Remove</th></tr>"; 
+	 
+	 
+	 
+	   String query = "select * from patient";    
+	   Statement stmt = con.createStatement();    
+	   ResultSet rs = stmt.executeQuery(query); 
+	   
+	// iterate through the rows in the result set   
+	   while (rs.next())   
+	   {   
+		    String Patient_ID = Integer.toString(rs.getInt("Patient_ID"));
+		    String FirstName = rs.getString("FirstName");     
+		    String LastName = rs.getString("LastName");     
+		    String NIC = rs.getString("NIC"); 
+		    String DOB = rs.getString("DOB"); 
+		    String Email = rs.getString("Email"); 
+		    String Mobile = rs.getString("Mobile"); 
+		    String Address = rs.getString("Address"); 
+		    String BloodGroup = rs.getString("BloodGroup"); 
+		    String Allergy = rs.getString("Allergy"); 
+		    String Gender = rs.getString("Gender"); 
+		    String Password = rs.getString("Password"); 
+		    
+		 /* String itemPrice = Double.toString(rs.getDouble("itemPrice")); */  
+		    
+		 // Add into the html table     
+		    output += "<tr><td>" + FirstName + "</td>";     
+		    output += "<td>" + LastName + "</td>";     
+		    output += "<td>" + NIC + "</td>";     
+		    output += "<td>" + DOB + "</td>"; 
+		    output += "<td>" + Email + "</td>"; 
+		    output += "<td>" + Mobile + "</td>"; 
+		    output += "<td>" + Address + "</td>"; 
+		    output += "<td>" + BloodGroup + "</td>"; 
+		    output += "<td>" + Allergy + "</td>";
+		    output += "<td>" + Gender + "</td>"; 
+		    output += "<td>" + Password + "</td>"; 
+		    
+		 // buttons     
+		    output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btn btn-secondary\"></td>"
+		    		+ "<td><form method=\"post\" action=\"items.jsp\">"      
+		    		+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"      
+		    		+ "<input name=\"itemID\" type=\"hidden\" value=\"" + Patient_ID     
+		    		+ "\">" + "</form></td></tr>";    
+		    
+	   } 
+		    
+		    con.close(); 
+		  
+		    // Complete the html table    
+		    output += "</table>";   
+		}   
+		catch (Exception e)   
+		{    
+				output = "Error while reading the Patient Details.";    
+				System.err.println(e.getMessage());   } 
+	 
+	  return output;  
+	  
+}
 
 }

@@ -48,4 +48,12 @@ public class PatientService {
 		String output = pObj.insertPatient(FName, LName, NIC, DOB, Email, Mobile, Address,BloodGroup, Allergy, Gender, password, ConfirmPassword);
 		return output;
 	}
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readPatient() {
+		return pObj.readPatient();
+	}
+
 }
