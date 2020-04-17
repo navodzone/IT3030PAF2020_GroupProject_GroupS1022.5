@@ -56,4 +56,31 @@ public class PatientService {
 		return pObj.readPatient();
 	}
 
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePatient(String PatientData) { // Convert the input string to a JSON object
+		JsonObject pObject = new JsonParser().parse(PatientData).getAsJsonObject();
+
+		// Read the values from the JSON object
+		String Patient_ID = pObject.get("Patient_ID").getAsString();
+		String FName = pObject.get("FirstName").getAsString();
+		String LName = pObject.get("LastName").getAsString();
+		String NIC = pObject.get("NIC").getAsString();
+		String DOB = pObject.get("DOB").getAsString();
+		String Email = pObject.get("Email").getAsString();
+		String Mobile = pObject.get("Mobile").getAsString();
+		String Address = pObject.get("Address").getAsString();
+		String BloodGroup = pObject.get("BloodGroup").getAsString();
+		String Allergy = pObject.get("Allergy").getAsString();
+		String Gender = pObject.get("Gender").getAsString();
+		String password = pObject.get("password").getAsString();
+		String ConfirmPassword = pObject.get("ConfirmPassword").getAsString();
+		
+		String output = pObj.updatePatient(Patient_ID,FName, LName, NIC, DOB, Email, Mobile, Address,BloodGroup, Allergy, Gender, password, ConfirmPassword);
+		return output;
+	}
+
+
 }

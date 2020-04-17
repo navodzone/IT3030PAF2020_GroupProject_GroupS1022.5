@@ -146,5 +146,53 @@ public String readPatient()
 	  return output;  
 	  
 }
+public String updatePatient(String Patient_ID,String FName, String LName, String NIC,String DOB,String Email,String Mobile,String Address,String BloodGroup, String Allergy,String Gender,String password,String ConfirmPassword) 
+	{  
+		String output = ""; 
+	
+	
+		try   { 
+				Connection con = connect(); 
+		 
+		   if (con == null)   
+		   {return "Error while connecting to the database for updating."; } 
+		 
+		   // create a prepared statement   
+		   String query = "UPDATE patient SET FirstName=?,LastName=?,NIC=?,DOB=?,Email=?,Mobile=?,Address=?,BloodGroup=?,Allergy=?,Gender=?,password=?,ConfirmPassword=? WHERE Patient_ID=?"; 
+		 
+		   PreparedStatement preparedStmt = con.prepareStatement(query);
+		  
+		   
+
+		// binding values
+			
+					preparedStmt.setString(1, FName);
+					preparedStmt.setString(2, LName);
+					preparedStmt.setString(3, NIC);
+					preparedStmt.setString(4, DOB);
+					preparedStmt.setString(5, Email);
+					preparedStmt.setString(6, Mobile);
+					preparedStmt.setString(7, Address);
+					preparedStmt.setString(8, BloodGroup);
+					preparedStmt.setString(9, Allergy);
+					preparedStmt.setString(10, Gender);
+					preparedStmt.setString(11, password);
+					preparedStmt.setString(12, ConfirmPassword);
+					preparedStmt.setInt(13, Integer.parseInt(Patient_ID)); 
+		    // execute the statement   
+		   preparedStmt.execute();    
+		   con.close(); 
+		 
+		   output = "Updated successfully"; 
+		 
+		}   
+		catch (Exception e)   
+		{    
+			output = "Error while updating the item.";    
+			System.err.println(e.getMessage());   
+		} 
+	
+		return output;
+	} 
 
 }
