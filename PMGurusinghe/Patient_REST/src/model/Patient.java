@@ -126,7 +126,7 @@ public String readPatient()
 		    
 		 // buttons     
 		    output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btn btn-secondary\"></td>"
-		    		+ "<td><form method=\"post\" action=\"items.jsp\">"      
+		    		+ "<td><form method=\"post\" action=\"PatientRegistration.jsp\">"      
 		    		+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"      
 		    		+ "<input name=\"itemID\" type=\"hidden\" value=\"" + Patient_ID     
 		    		+ "\">" + "</form></td></tr>";    

@@ -26,6 +26,12 @@ import org.jsoup.nodes.Document;
 public class PatientService {
 	Patient pObj = new Patient();
 
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readPatient() {
+		return pObj.readPatient();
+	}
 
 	@POST
 	@Path("/")
@@ -47,13 +53,6 @@ public class PatientService {
 	{
 		String output = pObj.insertPatient(FName, LName, NIC, DOB, Email, Mobile, Address,BloodGroup, Allergy, Gender, password, ConfirmPassword);
 		return output;
-	}
-	
-	@GET
-	@Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String readPatient() {
-		return pObj.readPatient();
 	}
 
 	@PUT
@@ -81,6 +80,7 @@ public class PatientService {
 		String output = pObj.updatePatient(Patient_ID,FName, LName, NIC, DOB, Email, Mobile, Address,BloodGroup, Allergy, Gender, password, ConfirmPassword);
 		return output;
 	}
+
 	@DELETE
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
@@ -97,6 +97,4 @@ public class PatientService {
 
 		return output;
 	}
-
-
 }
