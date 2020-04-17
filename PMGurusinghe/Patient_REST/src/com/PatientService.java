@@ -81,6 +81,22 @@ public class PatientService {
 		String output = pObj.updatePatient(Patient_ID,FName, LName, NIC, DOB, Email, Mobile, Address,BloodGroup, Allergy, Gender, password, ConfirmPassword);
 		return output;
 	}
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePatient(String PatientData) 
+	{ 
+		// Convert the input string to an XML document
+		Document doc = Jsoup.parse(PatientData, "", Parser.xmlParser()); 
+		
+		//Read the value from the element <itemID> 
+		String Patient_ID = doc.select("Patient_ID").text();
+
+		String output = pObj.deletePatient(Patient_ID);
+
+		return output;
+	}
 
 
 }

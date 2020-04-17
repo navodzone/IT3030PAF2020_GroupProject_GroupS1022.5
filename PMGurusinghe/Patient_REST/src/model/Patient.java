@@ -194,5 +194,39 @@ public String updatePatient(String Patient_ID,String FName, String LName, String
 	
 		return output;
 	} 
+public String deletePatient(String Patient_ID) 
+	{   
+		String output = ""; 
+	
+		try   
+		{   
+			Connection con = connect(); 
+	
+			if (con == null)   
+			{return "Error while connecting to the database for deleting."; } 
+	
+			// create a prepared statement    
+			String query = "delete from patient where Patient_ID=?"; 
+	
+			PreparedStatement preparedStmt = con.prepareStatement(query); 
+	
+			// binding values    
+			preparedStmt.setInt(1, Integer.parseInt(Patient_ID)); 
+	
+			// execute the statement    
+			preparedStmt.execute();    
+			con.close(); 
+	
+			output = "Deleted successfully";   
+			
+		}  
+		catch (Exception e)   
+		{   
+			output = "Error while deleting the Patient Details.";    
+			System.err.println(e.getMessage());  
+		} 
+	
+		return output;  
+	} 
 
 }
