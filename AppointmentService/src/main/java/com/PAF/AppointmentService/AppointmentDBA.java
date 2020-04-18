@@ -38,7 +38,7 @@ public class AppointmentDBA {
 							
 							Appointment a = new Appointment();
 							
-							a.setAppointId(rs.getString(1));
+							a.setAppointId(rs.getInt(1));
 							a.setPatientId(rs.getString(2));
 							a.setPatientName(rs.getString(3));
 							a.setAppointDate(rs.getString(4));
@@ -61,14 +61,14 @@ public class AppointmentDBA {
 				public Appointment getAppointment(int appointId)
 				{
 					Appointment a = new Appointment();
-					String sql = "select * from appointments where appointId="+appointId;
+					String sql = "select * from appointment where appointId="+appointId;
 					try {
 						Statement st = con.createStatement();
 						ResultSet rs = st.executeQuery(sql);
 						if(rs.next()) {
 							
 							
-							a.setAppointId(rs.getString(1));
+							a.setAppointId(rs.getInt(1));
 							a.setPatientId(rs.getString(2));
 							a.setPatientName(rs.getString(3));
 							a.setAppointDate(rs.getString(4));
@@ -93,7 +93,7 @@ public class AppointmentDBA {
 					String sql = "insert into appointment values(?,?,?,?,?,?,?,?)";
 					try {
 						PreparedStatement st = con.prepareStatement(sql);
-						st.setString(1, a1.getAppointId());
+						st.setInt(1, a1.getAppointId());
 						st.setString(2, a1.getPatientId());
 						st.setString(3, a1.getPatientName());
 						st.setString(4, a1.getAppointDate());
@@ -122,7 +122,7 @@ public class AppointmentDBA {
 							st.setString(5, a1.getAppointDoct());
 							st.setString(6, a1.getHospital());
 							st.setString(7, a1.getSpecialization());
-							st.setString(8, a1.getAppointId());
+							st.setInt(8, a1.getAppointId());
 							
 							st.executeUpdate();
 							

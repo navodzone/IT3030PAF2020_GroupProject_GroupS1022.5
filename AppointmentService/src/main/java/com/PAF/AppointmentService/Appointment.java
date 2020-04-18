@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Appointment {
 	
-	private String appointId;
+	private int appointId;
 	private String patientId;
 	private String patientName;
 	private String appointDate;
@@ -13,10 +13,10 @@ public class Appointment {
 	private String appointDoct;
 	private String hospital;
 	private String specialization;
-	public String getAppointId() {
+	public int getAppointId() {
 		return appointId;
 	}
-	public void setAppointId(String appointId) {
+	public void setAppointId(int appointId) {
 		this.appointId = appointId;
 	}
 	public String getPatientId() {
