@@ -1,2 +1,0 @@
-# IT3030PAF2020_GroupProject_GroupS1022.5
-HelthCare Hospital Management System
